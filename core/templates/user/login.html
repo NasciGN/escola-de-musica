@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'components/nav_menu.html' %}
+
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="col-md-6">
+        <h3 class="mb-3 mt-5">Login</h3>
+        <form action="." method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label class="block mb-2 text-sm font-medium text-gray-900"
+                    for="{{ form.username.id_for_label }}">
+                    {{ form.username.label_tag }}
+                </label>
+                <input class="form-control" id="{{ form.username.id_for_label }}" type="text" placeholder="Digite seu nome de usuário"
+                    name="{{ form.username.html_name }}" {% if form.username.value %}value="{{ form.username.value }}"
+                    {% endif %}>
+                {% if form.username.errors %}
+                <div>{{ form.username.errors.as_text }}</div>
+                {% endif %}
+                <div class="">{{ form.username.help_text }}</div>
+            </div>
+            <div class="form-group">
+                <label for="password" for="{{ form.password.id_for_label }}">
+                    {{ form.password.label_tag }}
+                </label>
+                <input class="form-control" id="{{ form.password.id_for_label }}" type="password"
+                    placeholder="Digite sua senha" name="{{ form.password.html_name }}">
+                {% if form.password.errors %}
+                <div class="">{{ form.password.errors.as_text }}</div>
+                {% endif %}
+
+                <div class="">{{ form.password.help_text }}</div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="{% url 'registrar' %}">Não tem uma conta?</a>
+                <button type="submit" class="btn btn-primary salvar-btn">Entrar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .salvar-btn.btn-primary {
+        background-color: #1b80eb;
+        border-color: #1b80eb;
+    }
+
+    .salvar-btn.btn-primary:hover {
+        background-color: #11559e;
+        border-color: #11559e;
+    }
+</style>
+
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "base.html" %} 
+{% block content %} 
+{% include 'components/nav_tables.html' %}
+
+<div class="col-12 d-flex flex-column align-items-center my-4">
+    <div class="col-md-6">
+        <h3 class="text-center mb-4">Instrumentos | {% if object %}Editar{% else %}Adicionar{% endif %}</h3>
+    <div class="mt-4">
+        <form method="post" action="{% if object %}{% url 'instrumento:update' object.pk %}{% else %}{% url 'instrumento:create' %}{% endif %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.nome.id_for_label }}">Nome</label>
+                <input class="form-control" id="{{ form.nome.id_for_label }}" type="text"
+                    placeholder="Nome" name="{{ form.nome.html_name }}" {% if form.nome.value %}
+                    value="{{ form.nome.value }}" {% endif %}>
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.marca.id_for_label }}">Marca</label>
+                <input class="form-control" id="{{ form.marca.id_for_label }}" type="text"
+                    placeholder="Marca" name="{{ form.marca.html_name }}" {% if form.marca.value %}
+                    value="{{ form.marca.value }}" {% endif %}>
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.modelo.id_for_label }}">Modelo</label>
+                <input class="form-control" id="{{ form.modelo.id_for_label }}" type="text"
+                    placeholder="Modelo" name="{{ form.modelo.html_name }}" {% if form.modelo.value %}
+                    value="{{ form.modelo.value }}" {% endif %}>
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.n_serie.id_for_label }}">N. Série</label>
+                <input class="form-control" id="{{ form.n_serie.id_for_label }}" type="number" step="1"
+                    placeholder="N. Série" name="{{ form.n_serie.html_name }}" {% if form.n_serie.value %}
+                    value="{{ form.n_serie.value }}" {% endif %}>
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.musico.id_for_label }}">Usado por</label>
+                <select class="form-control" id="{{ form.musico.id_for_label }}" name="{{ form.musico.html_name }}">
+                    {% for musico in form.musico.field.choices %}
+                        <option value="{{ musico.0 }}" {% if musico.0 == form.musico.value %}selected{% endif %}>{{ musico.1 }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="{% url 'instrumento:read' %}" class="btn btn-danger ml-3 cancelar-btn">Cancelar</a>
+                <button type="submit" class="btn btn-primary salvar-btn">Salvar</button>
+            </div>
+        </form>
+    </div>
+    </div>
+</div>
+
+<style>
+    .salvar-btn.btn-primary {
+        background-color: #1b80eb; 
+        border-color: #1b80eb;
+    }
+    
+    .salvar-btn.btn-primary:hover {
+        background-color: #11559e;
+        border-color: #11559e;
+    }
+
+    .cancelar-btn.btn-danger {
+        background-color: #e23a4b;
+        border-color: #e23a4b;
+    }
+
+    .cancelar-btn.btn-danger:hover {
+        background-color: #a82532;
+        border-color: #a82532;
+    }
+</style>
+
+{% endblock %}
