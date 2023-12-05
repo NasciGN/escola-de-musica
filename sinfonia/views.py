@@ -10,18 +10,19 @@ from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.template.loader import render_to_string
 from xhtml2pdf import pisa
-    
+from django.utils.translation import gettext as _
+from django.utils import translation
+
 class SinfoniaListView(LoginRequiredMixin, ListView):
     model = Sinfonia
     template_name = 'sinfonia/tabela_sinfonia.html'
     context_object_name = 'sinfonias'
     login_url='login'
     
-
 class SinfoniaCreateView(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
     model = Sinfonia
     template_name = 'sinfonia/criar_sinfonia.html'
-    fields = ['nome', 'compositor',]
+    fields = ['nome', 'compositor']
     success_url = reverse_lazy('sinfonia:read')
     login_url='login'
     permission_required = 'core.add_sinfonia'
@@ -52,7 +53,6 @@ class SinfoniaDeleteView(PermissionRequiredMixin, LoginRequiredMixin, DeleteView
         self.object.delete()
         return redirect(self.get_success_url())
 
-
 class GerarPDFSinfoniaView(PermissionRequiredMixin, View):
     permission_required = 'core.view_sinfonia'
 
@@ -67,12 +67,10 @@ class GerarPDFSinfoniaView(PermissionRequiredMixin, View):
             response['Content-Disposition'] = f'filename="{sinfonia.nome}_relatorio.pdf"'
             pisa_status = pisa.CreatePDF(html, dest=response)
             if pisa_status.err:
-                return HttpResponse('Erro ao gerar o PDF')
+                return HttpResponse(_('Error generating PDF'))
             return response
         except Sinfonia.DoesNotExist:
-            return HttpResponse('Sinfonia não encontrada')
-
-
+            return HttpResponse(_('Sinfonia not found'))
 
 class GerarPdfTableSinfoniaView(PermissionRequiredMixin, View):
     permission_required = 'core.view_sinfonia'
@@ -81,7 +79,7 @@ class GerarPdfTableSinfoniaView(PermissionRequiredMixin, View):
         try:
             sinfonias = Sinfonia.objects.all()
             if not sinfonias.exists():
-                return HttpResponse('Não há sinfonias cadastradas')
+                return HttpResponse(_('No sinfonias registered'))
             
             template = get_template('sinfonia/sinfonia_template.html')
             contexto = {'sinfonias': sinfonias}
@@ -92,9 +90,8 @@ class GerarPdfTableSinfoniaView(PermissionRequiredMixin, View):
             pisa_status = pisa.CreatePDF(html, dest=response)
             
             if pisa_status.err:
-                return HttpResponse('Erro ao gerar o PDF')
+                return HttpResponse(_('Error generating PDF'))
             
             return response
         except Sinfonia.DoesNotExist:
-            return HttpResponse('Erro ao recuperar sinfonias')
-
+            return HttpResponse(_('Error retrieving sinfonias'))

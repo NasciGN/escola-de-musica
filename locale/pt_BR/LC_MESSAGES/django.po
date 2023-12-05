@@ -16,49 +16,49 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: .\apresentacao\templates\apresentacao\criar_apresentacao.html:8
 msgid "Apresentações"
-msgstr "Presentations"
+msgstr ""
 
 #: .\apresentacao\templates\apresentacao\criar_apresentacao.html:8
 msgid "Editar"
-msgstr "To edit"
+msgstr ""
 
 #: .\apresentacao\templates\apresentacao\criar_apresentacao.html:8
 msgid "Adicionar"
-msgstr "To add"
+msgstr ""
 
 #: .\apresentacao\templates\apresentacao\criar_apresentacao.html:13
 #: .\apresentacao\templates\apresentacao\criar_apresentacao.html:15
 msgid "Nome"
-msgstr "Name"
+msgstr ""
 
 #: .\apresentacao\templates\apresentacao\criar_apresentacao.html:21
 msgid "Orquestra"
-msgstr "Orchestra"
+msgstr ""
 
 #: .\apresentacao\templates\apresentacao\criar_apresentacao.html:32
 msgid "Sinfonia"
-msgstr "Symphony"
+msgstr ""
 
 #: .\apresentacao\templates\apresentacao\criar_apresentacao.html:42
 msgid "Data e Hora"
-msgstr "Date and time"
+msgstr ""
 
 #: .\apresentacao\templates\apresentacao\criar_apresentacao.html:44
 msgid "Data da Apresentação"
-msgstr "Presentation Date"
+msgstr ""
 
 #: .\apresentacao\templates\apresentacao\criar_apresentacao.html:48
 msgid "Cancelar"
-msgstr "Cancel"
+msgstr ""
 
 #: .\apresentacao\templates\apresentacao\criar_apresentacao.html:49
 #: .\core\templates\index.html:120
 msgid "Salvar"
-msgstr "To save"
+msgstr ""
 
 #: .\apresentacao\views.py:34
 msgid "Name"
@@ -122,7 +122,7 @@ msgstr ""
 
 #: .\core\templates\index.html:13
 msgid "Sua escola de música"
-msgstr "Your music school"
+msgstr ""
 
 #: .\core\templates\index.html:17
 msgid ""
@@ -130,37 +130,30 @@ msgid ""
 "protagonista sinfônico em nossa Escola de Música. Aprenda, aprimore-se e "
 "emocione multidões. Sua jornada rumo ao sucesso musical começa aqui!"
 msgstr ""
-"Awaken your passion for music and shine in the best orchestras. Be "
-"symphonic protagonist in our School of Music. Learn, improve yourself and "
-"thrill crowds. Your journey to musical success starts here!"
 
 #: .\core\templates\index.html:24
 msgid "Palcos de Emoção e Encantamento"
-msgstr "Stages of Emotion and Enchantment"
+msgstr ""
 
 #: .\core\templates\index.html:27
 msgid ""
 "Viva a magia dos palcos, onde suas notas musicais ganham vida e envolvem a "
 "plateia em um espetáculo de emoção e encantamento."
 msgstr ""
-"Experience the magic of the stage, where your musical notes come to life and involve the "
-"audience in a spectacle of emotion and enchantment."
 
 #: .\core\templates\index.html:42
 msgid "Excelência Musical em Destaque"
-msgstr "Featured Musical Excellence"
+msgstr ""
 
 #: .\core\templates\index.html:46
 msgid ""
 "Descubra por que somos reconhecidos por nossa excelência musical e torne-se "
 "parte de nossa comunidade inspiradora."
 msgstr ""
-"Discover why we are recognized for our musical excellence and become"
-"part of our inspiring community."
 
 #: .\core\templates\index.html:55
 msgid "Premiados Professores"
-msgstr "Award-Winning Teachers"
+msgstr ""
 
 #: .\core\templates\index.html:57
 msgid "Nicole Milton"
@@ -178,7 +171,7 @@ msgstr ""
 
 #: .\core\templates\index.html:103
 msgid "Entraremos em contato"
-msgstr "We will be in touch"
+msgstr ""
 
 #: .\core\templates\index.html:116
 msgid "Eu concordo com os termos de serviço"

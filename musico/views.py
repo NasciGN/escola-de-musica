@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.utils import translation
 
 class MusicoListView(LoginRequiredMixin, ListView):
     model = Musico
@@ -54,5 +55,3 @@ class MusicoDeleteView(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
         self.object = self.get_object()
         self.object.delete()
         return redirect(self.get_success_url())
-
-
