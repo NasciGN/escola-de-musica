@@ -1,5 +1,6 @@
 from django.urls import reverse_lazy
 from core.models import Instrumento
+from django.views import View
 from django.shortcuts import redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
@@ -40,5 +41,33 @@ class InstrumentoDeleteView(LoginRequiredMixin, DeleteView):
         self.object = self.get_object()
         self.object.delete()
         return redirect(self.get_success_url())
+
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+
+class GerarPdfTableSinfoniaView(LoginRequiredMixin, View):
+    permission_required = 'core.view_instrumento'
+
+    def get(self, request):
+        try:
+            instrumentos = Instrumento.objects.all()
+            if not instrumentos.exists():
+                return HttpResponse('Não há instrumentos cadastradas')
+            
+            template = get_template('instrumento/instrumento_pdf.html')
+            contexto = {'instrumentos': instrumentos}
+            html = template.render(contexto)
+            
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] = 'filename="instrumentos.pdf"'
+            pisa_status = pisa.CreatePDF(html, dest=response)
+            
+            if pisa_status.err:
+                return HttpResponse('Erro ao gerar o PDF')
+            
+            return response
+        except Sinfonia.DoesNotExist:
+            return HttpResponse('Erro ao recuperar instrumentos')
 
 

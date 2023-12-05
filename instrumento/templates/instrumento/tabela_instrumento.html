@@ -18,6 +18,7 @@
     color: #a82532;
   }
 </style>
+
 <div class="container table-container">
   <table class="table table-striped">
     <thead>
@@ -27,6 +28,7 @@
         <th scope="col">Modelo</th>
         <th scope="col">N. Série</th>
         <th scope="col">Usado por</th>
+        <th scope="col" colspan="2"><a id="gerar-pdf"  href="#">Gerar Relatório</a></th>
       </tr>
     </thead>
     <tbody>
@@ -60,4 +62,33 @@
   </div>
 </div>
 
+    <!-- Adicione jQuery se ainda não estiver incluído no seu projeto -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $('#gerar-pdf').click(function () {
+          $.ajax({
+              url: '/instrumentos/pdf/',
+              method: 'GET',
+              success: function (data) {
+                  var blob = new Blob([data], { type: 'application/pdf' });
+                  var url = window.URL.createObjectURL(blob);
+                  var a = document.createElement('a');
+                  a.href = url;
+                  a.download = 'instrumentos.pdf';
+                  document.body.appendChild(a);
+                  a.click();
+                  document.body.removeChild(a);
+                  window.URL.revokeObjectURL(url);
+              },
+              error: function () {
+                  console.error('Erro ao gerar o PDF');
+              }
+          });
+      });
+    });
+  </script>
+
+  
 {% endblock %}
