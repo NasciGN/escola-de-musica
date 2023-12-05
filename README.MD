@@ -8,7 +8,7 @@
 - Thauan Felipe
 
 ---
-Link do site online: [Flex Grid](https://murilloj15.pythonanywhere.com/)
+[Clique aqui para ver demonstração online!](https://murilloj15.pythonanywhere.com/){:target="_blank"}
 ---
 
 ### Requisitos trabalho final `programação IV`
