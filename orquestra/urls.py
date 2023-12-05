@@ -8,4 +8,5 @@ urlpatterns = [
     path('criar/', views.OrquestraCreateView.as_view(), name='create'),
     path('editar/<int:pk>/', views.OrquestraUpdateView.as_view(), name='update'),
     path('excluir/<int:pk>/', views.OrquestraDeleteView.as_view(), name='delete'),
+    path('pdf/', views.GerarPdfTableOrquestraView.as_view(), name='gerar_pdf'), 
 ]

@@ -25,6 +25,7 @@
         <th scope="col">Nome</th>
         <th scope="col">Nacionalidade</th>
         <th scope="col">Dt. Nascimento</th>
+        <th scope="col" colspan="2"><a id="gerar-pdf"  href="#">Gerar Relatório</a></th>
       </tr>
     </thead>
     <tbody>
@@ -55,5 +56,32 @@
     <a href="{% url 'musico:create' %}" class="btn sm action-2 f-16">Adicionar</a>
   </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $('#gerar-pdf').click(function () {
+          $.ajax({
+              url: '/musico/pdf/',
+              method: 'GET',
+              success: function (data) {
+                  var blob = new Blob([data], { type: 'application/pdf' });
+                  var url = window.URL.createObjectURL(blob);
+                  var a = document.createElement('a');
+                  a.href = url;
+                  a.download = 'musicos.pdf';
+                  document.body.appendChild(a);
+                  a.click();
+                  document.body.removeChild(a);
+                  window.URL.revokeObjectURL(url);
+              },
+              error: function () {
+                  console.error('Erro ao gerar o PDF');
+              }
+          });
+      });
+    });
+  </script>
 
 {% endblock %}

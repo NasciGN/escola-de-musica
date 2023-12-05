@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatório de Apresentacões</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px; /* Espaçamento externo para o corpo */
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 30px; /* Adicionando espaço abaixo do h1 */
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px; /* Adicionando espaço abaixo da tabela */
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 5px; /* Aumentando o preenchimento */
+            text-align: left;
+        }
+
+        th {
+            font-size: 15px; /* Ajustando o tamanho da fonte do cabeçalho */
+            text-align: center; /* Centralizando o texto no cabeçalho */
+        }
+    </style>
+</head>
+<body>
+
+<h1>Relatório de Apresentacões</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Orquestra</th>
+            <th>Sinfonia</th>
+            <th>Dt. Apresentação</th>
+        </tr>
+    </thead>
+    <tbody>
+      {% for apresentacao in apresentacoes %}
+      <tr>
+          <td>{{ apresentacao.nome }}</td>
+          <td>{{ apresentacao.orquestra }}</td>
+          <td>{{ apresentacao.sinfonia }}</td>
+          <td>{{ apresentacao.dt_apresentacao }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

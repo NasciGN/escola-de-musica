@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatório de Sinfonias</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px; /* Espaçamento externo para o corpo */
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 30px; /* Adicionando espaço abaixo do h1 */
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px; /* Adicionando espaço abaixo da tabela */
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 5px; /* Aumentando o preenchimento */
+            text-align: left;
+        }
+
+        th {
+            font-size: 15px; /* Ajustando o tamanho da fonte do cabeçalho */
+            text-align: center; /* Centralizando o texto no cabeçalho */
+        }
+    </style>
+</head>
+<body>
+
+<h1>Relatório de Instrumentos</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Nacionalidade</th>
+            <th>Dt. Nascimento</th>
+        </tr>
+    </thead>
+    <tbody>
+      {% for m in musicos %}
+      <tr>
+        <td>{{ m.nome }}</td>
+        <td>{{ m.nacionalidade }}</td>
+        <td>{{ m.dt_nascimento }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

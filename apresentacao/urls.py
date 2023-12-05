@@ -8,4 +8,5 @@ urlpatterns = [
     path('criar/', views.ApresentacaoCreateView.as_view(), name='create'),
     path('editar/<int:pk>/', views.ApresentacaoUpdateView.as_view(), name='update'),
     path('excluir/<int:pk>/', views.ApresentacaoDeleteView.as_view(), name='delete'),
+    path('pdf/', views.GerarPdfTableApresentacaoView.as_view(), name='gerar_pdf'), 
 ]
