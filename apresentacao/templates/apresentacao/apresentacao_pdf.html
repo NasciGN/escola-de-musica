@@ -42,18 +42,16 @@
             <th>Nome</th>
             <th>Orquestra</th>
             <th>Sinfonia</th>
-            <th>Dt. Apresentação
-            </th>
+            <th>Dt. Apresentação</th>
         </tr>
     </thead>
     <tbody>
       {% for apresentacao in apresentacoes %}
       <tr>
           <td>{{ apresentacao.nome }}</td>
-          <td>{{ apresentacao.marca }}</td>
-          <td>{{ apresentacao.modelo }}</td>
-          <td>{{ apresentacao.n_serie }}</td>
-          <td>{{ apresentacao.musico }}</td>
+          <td>{{ apresentacao.orquestra }}</td>
+          <td>{{ apresentacao.sinfonia }}</td>
+          <td>{{ apresentacao.dt_apresentacao }}</td>
       </tr>
       {% endfor %}
     </tbody>

@@ -1,10 +1,13 @@
 from django.urls import reverse_lazy
 from core.models import Instrumento
-from django.views import View
 from django.shortcuts import redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from django.views import View
 
 class InstrumentoListView(LoginRequiredMixin, ListView):
     model = Instrumento
@@ -42,9 +45,6 @@ class InstrumentoDeleteView(LoginRequiredMixin, DeleteView):
         self.object.delete()
         return redirect(self.get_success_url())
 
-from django.http import HttpResponse
-from django.template.loader import get_template
-from xhtml2pdf import pisa
 
 class GerarPdfTableSinfoniaView(LoginRequiredMixin, View):
     permission_required = 'core.view_instrumento'

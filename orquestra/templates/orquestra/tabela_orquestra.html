@@ -26,6 +26,7 @@
         <th scope="col">Cidade</th>
         <th scope="col">País</th>
         <th scope="col">Músicos</th>
+        <th scope="col" colspan="2"><a id="gerar-pdf"  href="#">Gerar Relatório</a></th>
       </tr>
     </thead>
     <tbody>
@@ -64,4 +65,30 @@
   </div>
 </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $('#gerar-pdf').click(function () {
+            $.ajax({
+                url: '/orquestras/pdf/',
+                method: 'GET',
+                success: function (data) {
+                    var blob = new Blob([data], { type: 'application/pdf' });
+                    var url = window.URL.createObjectURL(blob);
+                    var a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'orquestras.pdf';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    window.URL.revokeObjectURL(url);
+                },
+                error: function () {
+                    console.error('Erro ao gerar o PDF');
+                }
+            });
+        });
+      });
+    </script>
 {% endblock %}

@@ -40,20 +40,16 @@
     <thead>
         <tr>
             <th>Nome</th>
-            <th>Marca</th>
-            <th>Modelo</th>
-            <th>N. Série</th>
-            <th>Usado por</th>
+            <th>Nacionalidade</th>
+            <th>Dt. Nascimento</th>
         </tr>
     </thead>
     <tbody>
-      {% for instrumento in instrumentos %}
+      {% for m in musicos %}
       <tr>
-          <td>{{ instrumento.nome }}</td>
-          <td>{{ instrumento.marca }}</td>
-          <td>{{ instrumento.modelo }}</td>
-          <td>{{ instrumento.n_serie }}</td>
-          <td>{{ instrumento.musico }}</td>
+        <td>{{ m.nome }}</td>
+        <td>{{ m.nacionalidade }}</td>
+        <td>{{ m.dt_nascimento }}</td>
       </tr>
       {% endfor %}
     </tbody>

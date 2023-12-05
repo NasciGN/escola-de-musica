@@ -8,6 +8,5 @@ urlpatterns = [
     path('criar/', views.SinfoniaCreateView.as_view(), name='create'),
     path('editar/<int:pk>/', views.SinfoniaUpdateView.as_view(), name='update'),
     path('excluir/<int:pk>/', views.SinfoniaDeleteView.as_view(), name='delete'),
-    path('gerar_pdf_sinfonia/<int:sinfonia_id>/', views.GerarPDFSinfoniaView.as_view(), name='gerar_pdf_sinfonia'),
-    path('gerar_pdf_tabela_sinfonias/', views.GerarPdfTableSinfoniaView.as_view(), name='gerar_pdf_tabela_sinfonias'),
+    path('pdf/', views.GerarPDFSinfoniaView.as_view(), name='gerar_pdf'),
 ]

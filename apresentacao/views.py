@@ -5,6 +5,10 @@ from django.shortcuts import redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from django.views import View
 
 class ApresentacaoListView(LoginRequiredMixin, ListView):
     model = Apresentacao
@@ -50,4 +54,26 @@ class ApresentacaoDeleteView(LoginRequiredMixin, DeleteView):
         self.object.delete()
         return redirect(self.get_success_url())
 
+class GerarPdfTableApresentacaoView(LoginRequiredMixin, View):
+    permission_required = 'core.view_apresentacao'
 
+    def get(self, request):
+        try:
+            apresentacoes = Apresentacao.objects.all()
+            if not apresentacoes.exists():
+                return HttpResponse('Não há apresentacões cadastradas')
+            
+            template = get_template('apresentacao/apresentacao_pdf.html')
+            contexto = {'apresentacoes': apresentacoes}
+            html = template.render(contexto)
+            
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] = 'filename="apresentacao.pdf"'
+            pisa_status = pisa.CreatePDF(html, dest=response)
+            
+            if pisa_status.err:
+                return HttpResponse('Erro ao gerar o PDF')
+            
+            return response
+        except Apresentacao.DoesNotExist:
+            return HttpResponse('Erro ao recuperar apresentações')

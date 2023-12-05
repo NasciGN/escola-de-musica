@@ -56,21 +56,26 @@ class SinfoniaDeleteView(PermissionRequiredMixin, LoginRequiredMixin, DeleteView
 class GerarPDFSinfoniaView(PermissionRequiredMixin, View):
     permission_required = 'core.view_sinfonia'
 
-    def get(self, request, sinfonia_id):
+    def get(self, request):
         try:
-            sinfonia = get_object_or_404(Sinfonia, pk=sinfonia_id)
-            print(f'Sinfonia: {sinfonia.compositor}')
-            template = get_template('sinfonia/sinfonia_template.html')
-            contexto = {'sinfonias': [sinfonia]}  # Certifique-se de passar uma lista de sinfonias
+            sinfonias = Sinfonia.objects.all()
+            if not sinfonias.exists():
+                return HttpResponse('Não há sinfonia cadastradas')
+            
+            template = get_template('sinfonia/sinfonia_pdf.html')
+            contexto = {'sinfonias': sinfonias}
             html = template.render(contexto)
+            
             response = HttpResponse(content_type='application/pdf')
-            response['Content-Disposition'] = f'filename="{sinfonia.nome}_relatorio.pdf"'
+            response['Content-Disposition'] = 'filename="sinfonias.pdf"'
             pisa_status = pisa.CreatePDF(html, dest=response)
+            
             if pisa_status.err:
                 return HttpResponse('Erro ao gerar o PDF')
+            
             return response
         except Sinfonia.DoesNotExist:
-            return HttpResponse('Sinfonia não encontrada')
+            return HttpResponse('Erro ao recuperar sinfonias')
 
 
 

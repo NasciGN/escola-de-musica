@@ -40,22 +40,24 @@
     <thead>
         <tr>
             <th>Nome</th>
-            <th>Marca</th>
-            <th>Modelo</th>
-            <th>N. Série</th>
-            <th>Usado por</th>
+            <th>Cidade</th>
+            <th>País</th>
+            <th>Músicos</th>
         </tr>
     </thead>
     <tbody>
-      {% for instrumento in instrumentos %}
-      <tr>
-          <td>{{ instrumento.nome }}</td>
-          <td>{{ instrumento.marca }}</td>
-          <td>{{ instrumento.modelo }}</td>
-          <td>{{ instrumento.n_serie }}</td>
-          <td>{{ instrumento.musico }}</td>
-      </tr>
-      {% endfor %}
+        {% for orquestra in orquestras %}
+        <tr>
+          <td>{{ orquestra.nome }}</td>
+          <td>{{ orquestra.cidade }}</td>
+          <td>{{ orquestra.pais }}</td>
+          <td>
+            {% for musico in orquestra.musicos.all %}
+              {{ musico.nome }}
+              {% if not forloop.last %}, {% endif %}
+            {% endfor %}
+          </td>
+        {% endfor %}
     </tbody>
 </table>
 

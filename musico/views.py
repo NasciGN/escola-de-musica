@@ -5,6 +5,11 @@ from django.shortcuts import redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from django.views import View
+
 
 class MusicoListView(LoginRequiredMixin, ListView):
     model = Musico
@@ -54,5 +59,30 @@ class MusicoDeleteView(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
         self.object = self.get_object()
         self.object.delete()
         return redirect(self.get_success_url())
+
+
+class GerarPdfMusicoView(LoginRequiredMixin, View):
+    permission_required = 'core.view_musico'
+
+    def get(self, request):
+        try:
+            musicos = Musico.objects.all()
+            if not musicos.exists():
+                return HttpResponse('Não há instrumentos cadastradas')
+            
+            template = get_template('musico/musicos_pdf.html')
+            contexto = {'musicos': musicos}
+            html = template.render(contexto)
+            
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] = 'filename="musicos.pdf"'
+            pisa_status = pisa.CreatePDF(html, dest=response)
+            
+            if pisa_status.err:
+                return HttpResponse('Erro ao gerar o PDF')
+            
+            return response
+        except Musico.DoesNotExist:
+            return HttpResponse('Erro ao recuperar musicos')
 
 
