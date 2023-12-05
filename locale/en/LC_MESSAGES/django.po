@@ -174,7 +174,7 @@ msgstr ""
 
 #: .\core\templates\index.html:85
 msgid "Domitilda, Musico"
-msgstr ""
+msgstr "Domitilda, Musician"
 
 #: .\core\templates\index.html:103
 msgid "Entraremos em contato"
@@ -182,15 +182,15 @@ msgstr "We will be in touch"
 
 #: .\core\templates\index.html:116
 msgid "Eu concordo com os termos de serviço"
-msgstr ""
+msgstr "I agree to the terms of service"
 
 #: .\core\templates\index.html:125
 msgid "Possui uma conta?"
-msgstr ""
+msgstr "Have an account?"
 
 #: .\core\templates\index.html:125
 msgid "Acesse"
-msgstr ""
+msgstr "Access"
 
 #: .\sinfonia\views.py:70 .\sinfonia\views.py:93
 msgid "Error generating PDF"
