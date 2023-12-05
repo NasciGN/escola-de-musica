@@ -66,6 +66,8 @@ Senha: alunoifro
 Usuário: teste-professor  
 Senha: alunoifro
 
+---
+
 ### Usuário comum
 
 O usuário comum é aquele que cria sua conta pela inteface de login do site. Todo usuário criado pela interface do site por padrão possui as permissões de usuário comum.  
