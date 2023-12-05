@@ -8,7 +8,7 @@
 - Thauan Felipe
 
 ---
-[Clique aqui para ver demonstração online!](https://murilloj15.pythonanywhere.com/){:target="_blank"}
+[Clique aqui para ver a demonstração online!](https://murilloj15.pythonanywhere.com/){:target="_blank"}
 ---
 
 ### Requisitos trabalho final `programação IV`
