@@ -4,7 +4,7 @@
 
 - Gabriel Nascimento
 - Isaías Félix
-- Murilo José
+- Murillo José
 - Thauan Felipe
 
 ---
@@ -14,12 +14,12 @@
 O trabalho consiste em criar uma aplicação web utilizando o framework Django e deverá conter os seguintes itens:
 
 1. [x] O sistema deverá ter no mínimo dois níveis de usuários e deverá haver páginas que vão ser acessíveis a um determinado tipo de usuário.
-1. [ ] O sistema deverá gerar pelo menos uma relação em PDF.
-1. [ ] O sistema deverá gerar pelo menos uma aplicação de AJAX.
+1. [x] O sistema deverá gerar pelo menos uma relação em PDF.
+1. [x] O sistema deverá gerar pelo menos uma aplicação de AJAX.
 1. [x] O sistema deverá ter um visual agradável para os usuários.
-1. [ ] O sistema deve estar disponível em pelo menos mais um idioma.
+1. [x] O sistema deve estar disponível em pelo menos mais um idioma.
 1. [x] O sistema deve permitir interação dos usuários, seja para se cadastrar no site, seja para mudar o visual do sistema, ou outra interação pertinente.
-1. [ ] O sistema deve se preocupar com a acessibilidade (principalmente para deficientes visuais).
+1. [x] O sistema deve se preocupar com a acessibilidade (principalmente para deficientes visuais).
 
 ---
 
@@ -76,6 +76,14 @@ Este usuário tem permissão para realizar o CRUD completo nas seguintes models:
 
 Para as outras duas models (Músicos e Sinfonias), este usuário só tem permissão de visualização.
 
+### Usário de professor
+
+Para se ter uma conta de professor, primeiramente é preciso criar uma de usuário. Após isso, é necessário solicitar ao admin do site para realizar a troca de cargo, assim, se tornando uma conta de professor.
+Este usuário tem permissão para realizar o CRUD completo em todas as tabelas.
+Este usuário também tem permissão para gerar relatórios das tabelas.
+
+### Usário de professor
+Tem acesso a todas as funcionalidades e também ao painel de administração, que fica oculto para os demais usuários.
 ---
 
 ### Configuração do Ambiente
@@ -110,32 +118,6 @@ python manage.py runserver
 ```
 
 Acesse o sistema através do URL [http://localhost:8000/](http://localhost:8000/).
-
----
-
-### Desenvolvimento - Atividades a serem realizadas
-
-- Models
-  - [x] Criar o modelo Instrumento.
-  - [x] Criar o modelo Musico.
-  - [x] Criar o modelo Apresentacao.
-  - [x] Criar o modelo Sinfonia.
-  - [x] Criar o modelo Orquestra.
-- Instrumentos
-  - [x] Implementar views para adicionar, visualizar, editar e excluir instrumentos.
-  - [x] Configurar as URLs correspondentes para as views de instrumentos.
-- Músicos
-  - [x] Implementar views para adicionar, visualizar, editar e excluir músicos.
-  - [x] Configurar as URLs correspondentes para as views de músicos.
-- Apresentações
-  - [x] Implementar views para adicionar, visualizar, editar e excluir apresentações.
-  - [x] Configurar as URLs correspondentes para as views de apresentações.
-- Sinfonias
-  - [x] Implementar views para adicionar, visualizar, editar e excluir sinfonias.
-  - [x] Configurar as URLs correspondentes para as views de sinfonias.
-- Orquestras
-  - [x] Implementar views para adicionar, visualizar, editar e excluir orquestras.
-  - [x] Configurar as URLs correspondentes para as views de orquestras.
 
 ---
 
