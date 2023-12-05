@@ -42,6 +42,7 @@ Este é um projeto de um sistema web desenvolvido em Django e Bootstrap/HTML, cr
 
 - Django: Framework web em Python para o desenvolvimento do backend.
 - Bootstrap/HTML: Utilizados para criar o frontend responsivo e amigável ao usuário.
+- AJAX: Utilizado junto ao Django para gerar relatórios de forma dinâmica.
 
 ---
 
