@@ -34,6 +34,7 @@ Este é um projeto de um sistema web desenvolvido em Django e Bootstrap/HTML, cr
 - Registrar e gerenciar apresentações musicais, incluindo a data e hora.
 - Criar sinfonias e associá-las ao seu compositor.
 - Gerenciar orquestras, incluindo a adição e remoção de músicos, apresentações e sinfonias.
+- Gerar relatórios em PDF das tabelas.
 
 ---
 
