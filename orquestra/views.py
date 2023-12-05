@@ -4,16 +4,10 @@ from django.shortcuts import redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
-<<<<<<< HEAD
 from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 from django.views import View
-=======
-from django.utils.translation import gettext as _
-from django.utils import translation
-
->>>>>>> 9abfeb55dfbbcc181b992feca2d97b1cd5563ebf
 
 class OrquestraListView(LoginRequiredMixin, ListView):
     model = Orquestra
@@ -50,7 +44,6 @@ class OrquestraDeleteView(LoginRequiredMixin, DeleteView):
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
         self.object.delete()
-<<<<<<< HEAD
         return redirect(self.get_success_url())
 
 class GerarPdfTableOrquestraView(LoginRequiredMixin, View):
@@ -76,6 +69,3 @@ class GerarPdfTableOrquestraView(LoginRequiredMixin, View):
             return response
         except Orquestra.DoesNotExist:
             return HttpResponse('Erro ao recuperar orquestras')
-=======
-        return redirect(self.get_success_url())
->>>>>>> 9abfeb55dfbbcc181b992feca2d97b1cd5563ebf

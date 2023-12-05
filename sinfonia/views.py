@@ -71,20 +71,10 @@ class GerarPDFSinfoniaView(PermissionRequiredMixin, View):
             pisa_status = pisa.CreatePDF(html, dest=response)
             
             if pisa_status.err:
-<<<<<<< HEAD
-                return HttpResponse('Erro ao gerar o PDF')
-            
-            return response
-        except Sinfonia.DoesNotExist:
-            return HttpResponse('Erro ao recuperar sinfonias')
-
-
-=======
                 return HttpResponse(_('Error generating PDF'))
             return response
         except Sinfonia.DoesNotExist:
             return HttpResponse(_('Sinfonia not found'))
->>>>>>> 9abfeb55dfbbcc181b992feca2d97b1cd5563ebf
 
 class GerarPdfTableSinfoniaView(PermissionRequiredMixin, View):
     permission_required = 'core.view_sinfonia'
