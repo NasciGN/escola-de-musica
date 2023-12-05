@@ -5,23 +5,21 @@ from django.shortcuts import redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse
-from django.template.loader import get_template
-from xhtml2pdf import pisa
-from django.views import View
 
 class ApresentacaoListView(LoginRequiredMixin, ListView):
     model = Apresentacao
     template_name = 'apresentacao/tabela_apresentacao.html'
     context_object_name = 'apresentacoes'
-    login_url='login'
+    login_url = 'login'
+
 
 class ApresentacaoCreateView(LoginRequiredMixin, CreateView):
     model = Apresentacao
     template_name = 'apresentacao/criar_apresentacao.html'
     fields = ['nome', 'orquestra', 'sinfonia', 'dt_apresentacao']
     success_url = reverse_lazy('apresentacao:read')
-    login_url='login'
+    login_url = 'login'
+
 
 class ApresentacaoForm(forms.ModelForm):
     class Meta:
@@ -30,6 +28,12 @@ class ApresentacaoForm(forms.ModelForm):
         widgets = {
             'dt_apresentacao': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
         }
+        labels = {
+            'nome': _('Name'),
+            'orquestra': _('Orchestra'),
+            'sinfonia': _('Symphony'),
+            'dt_apresentacao': _('Date of Presentation'),
+        }
 
 class ApresentacaoUpdateView(LoginRequiredMixin, UpdateView):
     model = Apresentacao
@@ -37,12 +41,15 @@ class ApresentacaoUpdateView(LoginRequiredMixin, UpdateView):
     form_class = ApresentacaoForm
     success_url = reverse_lazy('apresentacao:read')
     slug_field = 'id'
-    login_url='login'
+    login_url = 'login'
+
 
 class ApresentacaoDeleteView(LoginRequiredMixin, DeleteView):
     model = Apresentacao
     success_url = reverse_lazy('apresentacao:read')
-    login_url='login'
+    login_url = 'login'
+
+
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
 
@@ -54,26 +61,4 @@ class ApresentacaoDeleteView(LoginRequiredMixin, DeleteView):
         self.object.delete()
         return redirect(self.get_success_url())
 
-class GerarPdfTableApresentacaoView(LoginRequiredMixin, View):
-    permission_required = 'core.view_apresentacao'
 
-    def get(self, request):
-        try:
-            apresentacoes = Apresentacao.objects.all()
-            if not apresentacoes.exists():
-                return HttpResponse('Não há apresentacões cadastradas')
-            
-            template = get_template('apresentacao/apresentacao_pdf.html')
-            contexto = {'apresentacoes': apresentacoes}
-            html = template.render(contexto)
-            
-            response = HttpResponse(content_type='application/pdf')
-            response['Content-Disposition'] = 'filename="apresentacao.pdf"'
-            pisa_status = pisa.CreatePDF(html, dest=response)
-            
-            if pisa_status.err:
-                return HttpResponse('Erro ao gerar o PDF')
-            
-            return response
-        except Apresentacao.DoesNotExist:
-            return HttpResponse('Erro ao recuperar apresentações')

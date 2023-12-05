@@ -52,7 +52,12 @@ def logar(request):
     return render(request, template_name="user/login.html", context={"form": form})
 
 def change_language(request, language):
-    if language in [lang[0] for lang in settings.LANGUAGES]:
+    available_languages = [lang[0] for lang in settings.LANGUAGES]
+
+    if language in available_languages:
         translation.activate(language)
         request.session[translation.LANGUAGE_SESSION_KEY] = language
+    else:
+        messages.warning(request, f"Idioma '{language}' não é suportado.")
+
     return redirect(request.META.get('HTTP_REFERER', 'home'))

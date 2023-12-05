@@ -1,11 +1,12 @@
 {% load static %}
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
 	<meta charset="utf-8">
-	<title>Startup 3.0.5 - Project</title>
+	<title>{% trans 'Startup 3.0.5 - Project' %}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="{% static 'i/favicon.png' %}" type="image/x-icon">
 	<!-- Google Fonts -->
@@ -28,10 +29,34 @@
 	<!-- Startup 3 CSS (Styles for all blocks) -->
 	<link href="{% static  'css/style.css' %}" rel="stylesheet" />
 	<!-- jQuery 3.3.1 -->
-
+	<script>
+		function iniciarLeituraAutomatica() {
+			if ('speechSynthesis' in window) {
+				var synth = window.speechSynthesis;
+				var utteranceInicial = new SpeechSynthesisUtterance("Olá, temos a funcionalidade de leitura de voz.\nGostaria de ativar a leitura em voz?");
+				synth.speak(utteranceInicial);
+			} else {
+				alert('A funcionalidade de leitura não é suportada neste navegador.');
+			}
+		}
+  		function exibirPopup() {
+			var resposta = confirm("Olá, temos a funcionalidade de leitura de voz.\nGostaria de ativar a leitura em voz?");
+			if (resposta) {
+				iniciarLeituraSegundoTexto();
+			}
+		}
+  		function iniciarLeituraSegundoTexto() {
+			if ('speechSynthesis' in window) {
+				var synth = window.speechSynthesis;
+				var utteranceSegundoTexto = new SpeechSynthesisUtterance("E refez-se a manutenção automotiva. Nosso compromisso é fornecer soluções de software avançadas que impulsionem a produtividade e a eficiência da sua oficina automotiva, maximizando a rentabilidade a longo prazo. Criar conta. Login");
+				synth.speak(utteranceSegundoTexto);
+			} else {
+				alert('A funcionalidade de leitura não é suportada neste navegador.');
+			}
+		}
+	</script>
 </head>
-
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100" onload="iniciarLeituraAutomatica(); exibirPopup();">
 
 
 	{% block content %}
@@ -47,17 +72,17 @@
 			<div class="row justify-content-between align-items-center lh-40 links">
 				<div class="col-lg-4 col-sm-6 text-sm-right text-lg-left order-1 order-lg-0" data-aos-duration="600"
 					data-aos="fade-down" data-aos-delay="300">
-					<a href="{% url 'sobre' %}" class="mr-15 link color-main">Sobre</a>
-					<a href="#" class="mx-15 link color-main">Políticas</a>
-					<a href="#" class="mx-15 link color-main">Termos</a>
+					<a href="{% url 'sobre' %}" class="mr-15 link color-main">{% trans 'Sobre' %}</a>
+					<a href="#" class="mx-15 link color-main">{% trans 'Políticas' %}</a>
+					<a href="#" class="mx-15 link color-main">{% trans 'Termos' %}</a>
 				</div>
 				<div class="mb-10 mb-lg-0 col-lg-auto order-0" data-aos-duration="600" data-aos="fade-down"
 					data-aos-delay="0">
-					<a href="#" class="logo link color-main">MusicSinc</a>
+					<a href="#" class="logo link color-main">{% trans 'MusicSinc' %}</a>
 				</div>
 				<div class="col-lg-4 col-sm-6 text-sm-left text-lg-right order-2 order-lg-0" data-aos-duration="600"
 					data-aos="fade-down" data-aos-delay="300">
-					<a href="#" class="mr-15 link color-main">Contato</a>
+					<a href="#" class="mr-15 link color-main">{% trans 'Contato' %}</a>
 					<a href="#" class="mx-15 link color-main"><i class="fab fa-twitter"></i></a>
 					<a href="#" class="mx-15 link color-main"><i class="fab fa-facebook-square"></i></a>
 					<a href="#" class="ml-15 link color-main"><i class="fab fa-google-plus-g"></i></a>
@@ -67,10 +92,10 @@
 				<div class="mt-10 col-xl-4 col-lg-5 col-md-6 col-sm-8" data-aos-duration="600" data-aos="fade-down"
 					data-aos-delay="0">
 					<div class="color-heading text-adaptive">
-						Não deixe de dar uma olhada em nossos <a target="_blank"
+						{% trans 'Não deixe de dar uma olhada em nossos' %} <a target="_blank"
 							href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="link color-heading">Termos de
 							Uso</a> <br />
-						e <a target="_blank" href="#" class="link color-heading">Políticas de Privacidade</a>
+						e <a target="_blank" href="#" class="link color-heading">{% trans 'Políticas de Privacidade' %}</a>
 					</div>
 				</div>
 			</div>
@@ -81,17 +106,17 @@
 	<div class="alert alert-success alert-dismissible alert-form-success" role="alert">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
 				aria-hidden="true">&times;</span></button>
-		Obrigado pela sua mensagem!
+				{% trans 'Obrigado pela sua mensagem!' %}
 	</div>
 	<div class="alert alert-warning alert-dismissible alert-form-check-fields" role="alert">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
 				aria-hidden="true">&times;</span></button>
-		Por favor, preencha os campos requeridos.
+				{% trans 'Por favor, preencha os campos requeridos.' %}
 	</div>
 	<div class="alert alert-danger alert-dismissible alert-form-error" role="alert">
 		<button type="button" class="close" aria-label="Close"><span
 				aria-hidden="true">&times;</span></button>
-		Ocorreu algum erro interno na hora do envio :(
+				{% trans 'Ocorreu algum erro interno na hora do envio :(' %}
 	</div>
 	<!-- popup with video -->
 	<div class="overlay"></div>
